@@ -2,15 +2,15 @@ import os
 import random
 import shutil
 
-image_folder = ["../datasets/BH-POOLS/images", "../datasets/BH-WATERTANKS/labels"]
-labels_folder = ["../datasets/BH-POOLS/images", "../datasets/BH-WATERTANKS/labels"]
+images_folder = ["../datasets/BH-POOLS/images", "../datasets/BH-WATERTANKS/images"]
+labels_folder = ["../datasets/BH-POOLS/labels", "../datasets/BH-WATERTANKS/labels"]
 
 train = 0
 test = 0
 valid = 0
 
 for id_grupo in range(2):
-    image_list = [os.path.join(image_folder[id_grupo], img) for img in os.listdir(image_folder[id_grupo]) if img.endswith(('.jpg', '.png'))]
+    image_list = [os.path.join(images_folder[id_grupo], img) for img in os.listdir(images_folder[id_grupo]) if img.endswith(('.jpg', '.png'))]
 
     qtd_img = len(image_list)
 
@@ -43,7 +43,7 @@ for id_grupo in range(2):
         qtd_img -= 1
         image_list.pop(rd_index)
         
-        shutil.copy(image_folder+name+".jpg", path_destino+"images/"+name+".jpg")
+        shutil.copy(images_folder+name+".jpg", path_destino+"images/"+name+".jpg")
 
         try:
             shutil.copy(labels_folder[id_grupo]+name+".txt", path_destino+"labels/"+name+".txt")
