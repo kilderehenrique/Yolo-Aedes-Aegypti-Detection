@@ -43,7 +43,7 @@ for id_grupo in range(2):
         qtd_img -= 1
         image_list.pop(rd_index)
         
-        shutil.copy(images_folder+name+".jpg", path_destino+"images/"+name+".jpg")
+        shutil.copy(images_folder[id_grupo]+name+".jpg", path_destino+"images/"+name+".jpg")
 
         try:
             shutil.copy(labels_folder[id_grupo]+name+".txt", path_destino+"labels/"+name+".txt")
