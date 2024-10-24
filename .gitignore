@@ -2,3 +2,7 @@ datasets/
 images/
 images_bb/
 labels/
+
+treinamento/train/
+treinamento/test/
+treinamento/valid/

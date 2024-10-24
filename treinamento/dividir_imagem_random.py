@@ -2,8 +2,8 @@ import os
 import random
 import shutil
 
-image_folder = ["datasets/POOLS/images", "datasets/WATER_TANKS/labels"]
-labels_folder = ["datasets/WATER_TANKS/labels", "datasets/POOLS/images"]
+image_folder = ["../datasets/POOLS/images", "../datasets/WATER_TANKS/labels"]
+labels_folder = ["../datasets/WATER_TANKS/labels", "../datasets/POOLS/images"]
 
 train = 0
 test = 0
