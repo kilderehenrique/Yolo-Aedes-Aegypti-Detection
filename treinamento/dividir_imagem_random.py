@@ -9,7 +9,7 @@ train = 0
 test = 0
 valid = 0
 
-for id_grupo in range(2):
+for id_grupo in range(len(images_folder)):
     image_list = [os.path.join(images_folder[id_grupo], img) for img in os.listdir(images_folder[id_grupo]) if img.endswith(('.jpg', '.png'))]
 
     qtd_img = len(image_list)
