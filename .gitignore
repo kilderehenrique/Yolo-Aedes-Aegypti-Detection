@@ -8,3 +8,4 @@ labels/
 treinamento/train/
 treinamento/test/
 treinamento/valid/
+treinamento/runs/

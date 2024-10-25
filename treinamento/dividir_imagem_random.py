@@ -2,8 +2,8 @@ import os
 import random
 import shutil
 
-images_folder = ["../datasets/BH-POOLS/images", "../datasets/BH-WATERTANKS/images"]
-labels_folder = ["../datasets/BH-POOLS/labels", "../datasets/BH-WATERTANKS/labels"]
+images_folder = ["../datasets/BH-POOLS/images/", "../datasets/BH-WATERTANKS/images/"]
+labels_folder = ["../datasets/BH-POOLS/labels/", "../datasets/BH-WATERTANKS/labels/"]
 
 train = 0
 test = 0
@@ -52,7 +52,7 @@ for id_grupo in range(2):
 
         cont += 1
 
-    print("Para o grupo", id_grupo, train)
-    print("Para o grupo", id_grupo, test)
-    print("Para o grupo", id_grupo, valid)
+    print(f"Para o grupo {id_grupo}, {train} imagens de treinamento.")
+    print(f"Para o grupo {id_grupo}, {test} imagens de teste.")
+    print(f"Para o grupo {id_grupo}, {valid} imagens de validação.")
 pass
