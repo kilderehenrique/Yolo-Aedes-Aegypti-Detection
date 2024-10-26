@@ -5,16 +5,22 @@ import os
 # 1 -> Piscina
 
 classes_id = {
-    "2": 0,
-    "pool": 0,
-    "watertank": 0
+    "watertank": 0,
+    "pool": 1
 }
 
-# Diretório onde estão os arquivos XML e onde os arquivos TXT serão salvos
-xml_dir = 'labels_xml/'
-txt_dir = 'labels/'
+datasets_path = "../datasets"
 
-os.makedirs(txt_dir, exist_ok=True)  # Criar a pasta se não existir
+dirs = [
+    {
+        "annotations": datasets_path + "/DL-Aedes-Dataset/pool/annotations/",
+        "labels": datasets_path + "/DL-Aedes-Dataset/pool/labels/"
+    },
+    {
+        "annotations": datasets_path + "/DL-Aedes-Dataset/caixas/annotations/",
+        "labels": datasets_path + "/DL-Aedes-Dataset/caixas/labels/"
+    }
+]
 
 def xml_to_yolo(xml_file, image_width=None, image_height=None):
     tree = ET.parse(xml_file)
@@ -50,16 +56,17 @@ def xml_to_yolo(xml_file, image_width=None, image_height=None):
 
     return yolo_annotations
 
-# Percorre os arquivos XML
-for xml_file in os.listdir(xml_dir):
-    if xml_file.endswith('.xml'):
-        annotations = xml_to_yolo(os.path.join(xml_dir, xml_file))
+for dir in dirs:
+    # Criar a pasta se não existir
+    os.makedirs(dir["labels"], exist_ok=True)  
 
-        # Salvar o arquivo TXT
-        txt_file = os.path.splitext(xml_file)[0] + '.txt'
-        with open(os.path.join(txt_dir, txt_file), 'w') as f:
-            for annotation in annotations:
-                f.write(annotation + '\n')
+    # Percorre os arquivos XML
+    for xml_file in os.listdir(dir["annotations"]):
+        if xml_file.endswith('.xml'):
+            annotations = xml_to_yolo(os.path.join(dir["annotations"], xml_file))
 
-
-print(classes_id)
+            # Salvar o arquivo TXT
+            txt_file = os.path.splitext(xml_file)[0] + '.txt'
+            with open(os.path.join(dir["labels"], txt_file), 'w') as f:
+                for annotation in annotations:
+                    f.write(annotation + '\n')
