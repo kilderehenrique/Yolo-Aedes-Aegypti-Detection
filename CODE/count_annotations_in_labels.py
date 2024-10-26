@@ -1,6 +1,7 @@
 import os
 
-dir = 'labels/'
+dir = '../datasets/BH-POOLS/labels/'
+dir = '../datasets/BH-WATERTANKS/labels/'
 
 arquivos = os.listdir(dir)
 
@@ -15,6 +16,10 @@ for file in arquivos:
         conteudo = arquivo.read()
 
     conteudo = conteudo.split("\n")
+
+    for linha in conteudo:
+        if linha == "":
+            conteudo.remove("")
 
     count += len(conteudo)
 

@@ -59,7 +59,7 @@ def detectarDesenharBb(img):
 
 def desenharBbDosLabels(img, img_path):
     img_name = img_path.split("/")[-1]
-    img_name = img_name[:img_name.rindex(".")]
+    img_name = os.path.splitext(img_name)[0]
 
     altura = len(img)
     largura = len(img[0])

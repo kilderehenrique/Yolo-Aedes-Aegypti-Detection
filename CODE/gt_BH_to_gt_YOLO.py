@@ -27,7 +27,7 @@ for id_grupo in range(2):
         image_height = len(imagem)
 
         img_name = image_path.split("/")[-1]
-        img_name = img_name[:img_name.rindex(".")]
+        img_name = os.path.splitext(img_name)[0]
 
         cinza = cv2.cvtColor(imagem, cv2.COLOR_BGR2GRAY)
 
