@@ -2,21 +2,50 @@ import os
 import random
 import shutil
 
-images_folder = ["../datasets/BH-POOLS/images/", "../datasets/BH-WATERTANKS/images/"]
-labels_folder = ["../datasets/BH-POOLS/labels/", "../datasets/BH-WATERTANKS/labels/"]
+datasets_path = "../datasets"
+
+folder_paths = {
+    "BH-DATASET": [
+        {
+            "images": datasets_path+"/BH-POOLS/images/",
+            "labels": datasets_path+"/BH-POOLS/labels/"
+        },
+        {
+            "images": datasets_path+"/BH-WATERTANKS/images/",
+            "labels": datasets_path+"/BH-WATERTANKS/labels/"
+        }
+    ],
+    "DL-Aedes-Dataset": [
+        {
+            "images": datasets_path+"/DL-Aedes-Dataset/pool/images/",
+            "labels": datasets_path+"/DL-Aedes-Dataset/pool/labels/"
+        },
+        {
+            "images": datasets_path+"/DL-Aedes-Dataset/caixas/images/",
+            "labels": datasets_path+"/DL-Aedes-Dataset/caixas/labels/"
+        }
+    ]
+}
+
+# ------------------------------
+# Altere o dataset aqui
+use_dataset = "BH-DATASET"
+use_dataset = "DL-Aedes-Dataset"
+
+# ------------------------------
 
 train = 0
 test = 0
 valid = 0
 
-for id_grupo in range(len(images_folder)):
-    image_list = [os.path.join(images_folder[id_grupo], img) for img in os.listdir(images_folder[id_grupo]) if img.endswith(('.jpg', '.png'))]
+for folder_path in folder_paths[use_dataset]:
+    image_list = os.listdir(folder_path["images"])
 
     qtd_img = len(image_list)
 
     for i in range(qtd_img):
         name = image_list[i].split("/")[-1]
-        name = name[:name.rindex(".")]
+        name = os.path.splitext(name)[0]
 
         image_list[i] = name
 
@@ -43,16 +72,18 @@ for id_grupo in range(len(images_folder)):
         qtd_img -= 1
         image_list.pop(rd_index)
         
-        shutil.copy(images_folder[id_grupo]+name+".jpg", path_destino+"images/"+name+".jpg")
+        shutil.copy(folder_path["images"]+name+".jpg", path_destino+"images/"+name+".jpg")
 
         try:
-            shutil.copy(labels_folder[id_grupo]+name+".txt", path_destino+"labels/"+name+".txt")
+            shutil.copy(folder_path["labels"]+name+".txt", path_destino+"labels/"+name+".txt")
         except:
             pass
 
         cont += 1
 
-    print(f"Para o grupo {id_grupo}, {train} imagens de treinamento.")
-    print(f"Para o grupo {id_grupo}, {test} imagens de teste.")
-    print(f"Para o grupo {id_grupo}, {valid} imagens de validação.")
+    path = folder_path["images"]
+    print(f"Para o grupo {path}, {train} imagens de treinamento.")
+    print(f"Para o grupo {path}, {test} imagens de teste.")
+    print(f"Para o grupo {path}, {valid} imagens de validação.")
+
 pass
