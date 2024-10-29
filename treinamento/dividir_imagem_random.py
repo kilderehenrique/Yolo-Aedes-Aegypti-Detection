@@ -38,8 +38,8 @@ datasets = {
 for name in datasets:
     for folder_path in datasets[name]:
         train = 0
-        test = 0
         valid = 0
+        test = 0
         
         image_list = os.listdir(folder_path["images"])
 
@@ -53,19 +53,19 @@ for name in datasets:
 
 
         qtd_train = round(qtd_img * 0.8)
-        qtd_test = round(qtd_img * 0.1)
+        qtd_valid = round(qtd_img * 0.1)
         cont = 1
 
         for i in range(qtd_img):
             if cont <= qtd_train:
                 path_destino = "train/"
                 train += 1
-            elif cont <= qtd_train+qtd_test:
-                path_destino = "test/"
-                test += 1
-            else:
+            elif cont <= qtd_train+qtd_valid:
                 path_destino = "valid/"
                 valid += 1
+            else:
+                path_destino = "test/"
+                test += 1
 
                 
             rd_index = random.randint(0, qtd_img-1)
