@@ -5,10 +5,13 @@ import pandas as pd
 from ultralytics import YOLO
 
 
+# Descomentar caso for usar modelo
 
-#model = YOLO("yolov8n.pt")
+#model = YOLO("best.pt")
 #print(model.names)
 #limiar_confianca = 0.5
+
+# -------------------------
 
 # Lista de imagens
 image_folder = '../images/'
@@ -48,7 +51,7 @@ def detectarDesenharBb(img):
 
     for detection in detections:
         for obj in detection.boxes:
-            class_id = int(obj.cls[0])
+            class_id = int(obj.cls[0])  
             confidence = float(obj.conf[0])
             x1, y1, x2, y2 = map(int, obj.xyxy[0])
 

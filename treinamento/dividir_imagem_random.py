@@ -4,7 +4,7 @@ import shutil
 
 datasets_path = "../datasets"
 
-folder_paths = {
+datasets = {
     "BH-DATASET": [
         {
             "images": datasets_path+"/BH-POOLS/images/",
@@ -29,61 +29,63 @@ folder_paths = {
 
 # ------------------------------
 # Altere o dataset aqui
-use_dataset = "BH-DATASET"
-use_dataset = "DL-Aedes-Dataset"
+#use_dataset = "DL-Aedes-Dataset"
+#use_dataset = "BH-DATASET"
 
 # ------------------------------
 
-train = 0
-test = 0
-valid = 0
 
-for folder_path in folder_paths[use_dataset]:
-    image_list = os.listdir(folder_path["images"])
-
-    qtd_img = len(image_list)
-
-    for i in range(qtd_img):
-        name = image_list[i].split("/")[-1]
-        name = os.path.splitext(name)[0]
-
-        image_list[i] = name
-
-
-    qtd_train = round(qtd_img * 0.8)
-    qtd_test = round(qtd_img * 0.1)
-    cont = 1
-
-    for i in range(qtd_img):
-        if cont <= qtd_train:
-            path_destino = "train/"
-            train += 1
-        elif cont <= qtd_train+qtd_test:
-            path_destino = "test/"
-            test += 1
-        else:
-            path_destino = "valid/"
-            valid += 1
-
-            
-        rd_index = random.randint(0, qtd_img-1)
-        name = image_list[rd_index]
-
-        qtd_img -= 1
-        image_list.pop(rd_index)
+for name in datasets:
+    for folder_path in datasets[name]:
+        train = 0
+        test = 0
+        valid = 0
         
-        shutil.copy(folder_path["images"]+name+".jpg", path_destino+"images/"+name+".jpg")
+        image_list = os.listdir(folder_path["images"])
 
-        try:
-            shutil.copy(folder_path["labels"]+name+".txt", path_destino+"labels/"+name+".txt")
-        except:
-            pass
+        qtd_img = len(image_list)
 
-        cont += 1
+        for i in range(qtd_img):
+            name = image_list[i].split("/")[-1]
+            name = os.path.splitext(name)[0]
 
-    path = folder_path["images"]
-    print(f"Para o grupo {path}, {train} imagens de treinamento.")
-    print(f"Para o grupo {path}, {test} imagens de teste.")
-    print(f"Para o grupo {path}, {valid} imagens de validação.")
+            image_list[i] = name
+
+
+        qtd_train = round(qtd_img * 0.8)
+        qtd_test = round(qtd_img * 0.1)
+        cont = 1
+
+        for i in range(qtd_img):
+            if cont <= qtd_train:
+                path_destino = "train/"
+                train += 1
+            elif cont <= qtd_train+qtd_test:
+                path_destino = "test/"
+                test += 1
+            else:
+                path_destino = "valid/"
+                valid += 1
+
+                
+            rd_index = random.randint(0, qtd_img-1)
+            name = image_list[rd_index]
+
+            qtd_img -= 1
+            image_list.pop(rd_index)
+            
+            shutil.copy(folder_path["images"]+name+".jpg", path_destino+"images/"+name+".jpg")
+
+            try:
+                shutil.copy(folder_path["labels"]+name+".txt", path_destino+"labels/"+name+".txt")
+            except:
+                pass
+
+            cont += 1
+
+        path = folder_path["images"]
+        print(f"Para o grupo {path}, {train} imagens de treinamento.")
+        print(f"Para o grupo {path}, {test} imagens de teste.")
+        print(f"Para o grupo {path}, {valid} imagens de validação.")
 
 pass
