@@ -7,12 +7,12 @@ datasets_path = "../datasets"
 datasets = {
     "BH-DATASET": [
         {
-            "images": datasets_path+"/BH-POOLS/images/",
-            "labels": datasets_path+"/BH-POOLS/labels/"
+            "images": datasets_path+"/BH-POOLS/recortes_images/",
+            "labels": datasets_path+"/BH-POOLS/recortes_labels/"
         },
         {
-            "images": datasets_path+"/BH-WATERTANKS/images/",
-            "labels": datasets_path+"/BH-WATERTANKS/labels/"
+            "images": datasets_path+"/BH-WATERTANKS/recortes_images/",
+            "labels": datasets_path+"/BH-WATERTANKS/recortes_labels/"
         }
     ],
     "DL-Aedes-Dataset": [
@@ -35,8 +35,8 @@ datasets = {
 # ------------------------------
 
 
-for name in datasets:
-    for folder_path in datasets[name]:
+for image_name in datasets:
+    for folder_path in datasets[image_name]:
         train = 0
         valid = 0
         test = 0
@@ -44,16 +44,8 @@ for name in datasets:
         image_list = os.listdir(folder_path["images"])
 
         qtd_img = len(image_list)
-
-        for i in range(qtd_img):
-            name = image_list[i].split("/")[-1]
-            name = os.path.splitext(name)[0]
-
-            image_list[i] = name
-
-
         qtd_train = round(qtd_img * 0.8)
-        qtd_valid = round(qtd_img * 0.1)
+        qtd_valid = round(qtd_img * 0.2)
         cont = 1
 
         for i in range(qtd_img):
@@ -69,15 +61,16 @@ for name in datasets:
 
                 
             rd_index = random.randint(0, qtd_img-1)
-            name = image_list[rd_index]
+            file_name = image_list[rd_index]
+            image_name = os.path.splitext(file_name)[0]
 
             qtd_img -= 1
             image_list.pop(rd_index)
             
-            shutil.copy(folder_path["images"]+name+".jpg", path_destino+"images/"+name+".jpg")
+            shutil.copy(folder_path["images"]+file_name, path_destino+"images/"+file_name)
 
             try:
-                shutil.copy(folder_path["labels"]+name+".txt", path_destino+"labels/"+name+".txt")
+                shutil.copy(folder_path["labels"]+image_name+".txt", path_destino+"labels/"+image_name+".txt")
             except:
                 pass
 
@@ -85,7 +78,7 @@ for name in datasets:
 
         path = folder_path["images"]
         print(f"Para o grupo {path}, {train} imagens de treinamento.")
-        print(f"Para o grupo {path}, {test} imagens de teste.")
         print(f"Para o grupo {path}, {valid} imagens de validação.")
+        print(f"Para o grupo {path}, {test} imagens de teste.")
 
 pass

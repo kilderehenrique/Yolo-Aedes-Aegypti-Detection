@@ -1,1 +1,1 @@
-yolo train model=yolo11n.pt data=data.yaml epochs=100 imgsz=640
+yolo train model=yolo11n.pt data=data.yaml epochs=50 imgsz=640

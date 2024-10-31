@@ -5,12 +5,12 @@ import cv2
 datasets_path = "../datasets"
 
 image_folder = [
-    datasets_path + "/BH-WATERTANKS/annotations/",
-    datasets_path + "/BH-POOLS/annotations/",
+    datasets_path + "/BH-WATERTANKS/recortes_annotations/",
+    datasets_path + "/BH-POOLS/recortes_annotations/",
 ]
 txt_dir = [
-    datasets_path + "/BH-WATERTANKS/labels/",
-    datasets_path + "/BH-POOLS/labels/",
+    datasets_path + "/BH-WATERTANKS/recortes_labels/",
+    datasets_path + "/BH-POOLS/recortes_labels/",
 ]
 
 for id_grupo in range(2):
@@ -55,7 +55,8 @@ for id_grupo in range(2):
 
             yolo_annotations += (f"{id_grupo} {x_center} {y_center} {width} {height}\n")
 
-        # Salvar o arquivo TXT
-        txt_file = img_name + '.txt'
-        with open(os.path.join(txt_dir[id_grupo], txt_file), 'w') as f:
-            f.write(yolo_annotations)
+        if yolo_annotations != "":
+            # Salvar o arquivo TXT
+            txt_file = img_name + '.txt'
+            with open(os.path.join(txt_dir[id_grupo], txt_file), 'w') as f:
+                f.write(yolo_annotations)

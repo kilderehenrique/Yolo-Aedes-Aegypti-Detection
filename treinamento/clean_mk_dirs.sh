@@ -1,11 +1,6 @@
-rm -r train/images/*
-rm -r train/labels/*
-
-rm -r test/images/*
-rm -r test/labels/*
-
-rm -r valid/images/*
-rm -r valid/labels/*
+rm -r train/
+rm -r test/
+rm -r valid/
 
 mkdir -p train/images/
 mkdir -p train/labels/

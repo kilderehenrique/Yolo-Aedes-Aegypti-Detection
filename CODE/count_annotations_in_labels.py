@@ -1,11 +1,13 @@
 import os
 
-dir = '../datasets/BH-POOLS/labels/'
-dir = '../datasets/BH-WATERTANKS/labels/'
+dir = '../datasets/BH-WATERTANKS/recortes_labels/'
+dir = '../datasets/BH-POOLS/recortes_labels/'
 
 arquivos = os.listdir(dir)
 
 print(len(arquivos), "arquivos")
+
+classes = set([])
 
 count = 0
 
@@ -21,6 +23,12 @@ for file in arquivos:
         if linha == "":
             conteudo.remove("")
 
+        linha = linha.split(" ")
+        classes.add(linha[0])
+
+
     count += len(conteudo)
 
+
 print(count, "objetos anotatos")
+print(classes)
