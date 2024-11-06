@@ -4,6 +4,9 @@ import shutil
 
 datasets_path = "../datasets"
 
+trainPer = 0.8
+validPer = 0.2
+
 datasets = {
     "BH-DATASET": [
         {
@@ -44,8 +47,8 @@ for image_name in datasets:
         image_list = os.listdir(folder_path["images"])
 
         qtd_img = len(image_list)
-        qtd_train = round(qtd_img * 0.8)
-        qtd_valid = round(qtd_img * 0.2)
+        qtd_train = round(qtd_img * trainPer)
+        qtd_valid = round(qtd_img * validPer)
         cont = 1
 
         for i in range(qtd_img):

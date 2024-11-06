@@ -5,19 +5,26 @@ import pandas as pd
 from ultralytics import YOLO
 
 
-# Descomentar caso for usar modelo
-
-#model = YOLO("best.pt")
-#print(model.names)
-#limiar_confianca = 0.5
+# Lista de imagens
+#image_folder = '../images/'
+image_folder = '../treinamento/test/images/'
+output_folder = '../images_bb/'
 
 # -------------------------
+# Descomentar caso for usar modelo
+train_folder = "train_BH_DT"
+path = f"../treinamento/runs/detect/{train_folder}/weights"
 
-# Lista de imagens
-image_folder = '../images/'
+model = YOLO(f"{path}/best.pt")
+print(model.names)
+limiar_confianca = 0.5
+
+# -------------------------
+# Para detectar labels
 dir_labels = '../labels/'
 
-output_folder = '../images_bb/'  # Pasta para salvar as imagens com bounding boxes
+# -------------------------
+  # Pasta para salvar as imagens com bounding boxes
 os.makedirs(output_folder, exist_ok=True)  # Criar a pasta se não existir
 
 classes = {
@@ -57,7 +64,7 @@ def detectarDesenharBb(img):
 
             if confidence > limiar_confianca:
                 cv2.rectangle(img, (x1, y1), (x2, y2), (255, 0, 0), 2)
-                cv2.putText(img, f'Classe: {model.names[class_id]}\nConf: {confidence:.2f}', (x1, y1 - 10),
+                cv2.putText(img, f'{class_id} {confidence:.2f}', (x1, y1 - 10),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
 
 def desenharBbDosLabels(img, img_path):
@@ -128,5 +135,5 @@ def usarModeloComWebcam():
 
 
 #usarModeloComWebcam()
-#detectInImages(withModel=True)
-detectInImages(withModel=False)
+detectInImages(withModel=True)
+#detectInImages(withModel=False)
