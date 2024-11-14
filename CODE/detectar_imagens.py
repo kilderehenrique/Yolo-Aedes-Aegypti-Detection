@@ -7,8 +7,10 @@ from ultralytics import YOLO
 
 # Lista de imagens
 #image_folder = '../images/'
-image_folder = '../treinamento/test/images/'
+image_folder = '../treinamento/train/images/'
 output_folder = '../images_bb/'
+# Para detectar labels
+dir_labels = '../treinamento/train/labels/'
 
 # -------------------------
 # Descomentar caso for usar modelo
@@ -18,10 +20,6 @@ path = f"../treinamento/runs/detect/{train_folder}/weights"
 model = YOLO(f"{path}/best.pt")
 print(model.names)
 limiar_confianca = 0.5
-
-# -------------------------
-# Para detectar labels
-dir_labels = '../labels/'
 
 # -------------------------
   # Pasta para salvar as imagens com bounding boxes
