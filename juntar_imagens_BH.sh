@@ -101,6 +101,54 @@ cd ../../..
 cd ./BH-WATERTANKS/REGION_6/ANNOTATION/
 for j in *; do cp "$j" ../../../../BH-WATERTANKS/annotations/W6_"$j"; i+=1; done
 
+# Annotation color
+
+i=1
+
+cd ../../..
+cd ./BH-POOLS/REGION_1/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-POOLS/annotations_color/P1_"$j"; i+=1; done
+cd ../../..
+cd ./BH-POOLS/REGION_2/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-POOLS/annotations_color/P2_"$j"; i+=1; done
+cd ../../..
+cd ./BH-POOLS/REGION_3/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-POOLS/annotations_color/P3_"$j"; i+=1; done
+cd ../../..
+cd ./BH-POOLS/REGION_4/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-POOLS/annotations_color/P4_"$j"; i+=1; done
+cd ../../..
+cd ./BH-POOLS/REGION_5/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-POOLS/annotations_color/P5_"$j"; i+=1; done
+cd ../../..
+cd ./BH-POOLS/REGION_6/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-POOLS/annotations_color/P6_"$j"; i+=1; done
+cd ../../..
+cd ./BH-POOLS/REGION_7/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-POOLS/annotations_color/P7_"$j"; i+=1; done 
+cd ../../..
+cd ./BH-POOLS/REGION_8/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-POOLS/annotations_color/P8_"$j"; i+=1; done
+
+cd ../../..
+cd ./BH-WATERTANKS/REGION_1/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-WATERTANKS/annotations_color/W1_"$j"; i+=1; done
+cd ../../..
+cd ./BH-WATERTANKS/REGION_2/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-WATERTANKS/annotations_color/W2_"$j"; i+=1; done
+cd ../../..
+cd ./BH-WATERTANKS/REGION_3/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-WATERTANKS/annotations_color/W3_"$j"; i+=1; done
+cd ../../..
+cd ./BH-WATERTANKS/REGION_4/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-WATERTANKS/annotations_color/W4_"$j"; i+=1; done
+cd ../../..
+cd ./BH-WATERTANKS/REGION_5/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-WATERTANKS/annotations_color/W5_"$j"; i+=1; done
+cd ../../..
+cd ./BH-WATERTANKS/REGION_6/ANNOTATION_COLOR/
+for j in *; do cp "$j" ../../../../BH-WATERTANKS/annotations_color/W6_"$j"; i+=1; done
+
 # Para se ajustar a quantidade que foi copiada
 i=$i-1;
 echo $i "annotations"
